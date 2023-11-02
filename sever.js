@@ -1,6 +1,9 @@
 // DEPENDENCIES
 const express = require('express')
 const methodOverride = require('method-override')
+const mongoose = require('mongoose')
+// mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+  
 
 
 //configuration
@@ -8,6 +11,7 @@ require('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
 console.log(PORT)
+const MONGO_URI = process.env.MONGO_URI
 
 // MIDDLEWARE
 app.set('views', __dirname + '/views')
@@ -35,8 +39,14 @@ app.get('*', (req, res) => {
   })
   
 
-//listen
+//start server
+
+const start = async () => {
+    await mongoose.connect(MONGO_URI)
+    console.log('Connected to database')
+}
 app.listen(PORT, () => {
     console.log('listening on port', PORT)
 })
+start()
 
