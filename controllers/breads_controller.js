@@ -29,8 +29,15 @@ breads.get('/:id', (req, res) => {
       })
 })
 
-
-
+// EDIT
+breads.get('/:id/edit', (req, res) => {
+  Bread.findById(req.params.id) 
+    .then(foundBread => { 
+      res.render('edit', {
+        bread: foundBread 
+      })
+    })
+})
 
 // CREATE
 breads.post('/', (req, res) => {
@@ -46,13 +53,29 @@ breads.post('/', (req, res) => {
   res.redirect('/breads')
 })
 
+//UPDATE
+breads.put('/:id', (req, res) => {
+  if(req.body.hasGluten === 'on'){
+    req.body.hasGluten = true
+  } else {
+    req.body.hasGluten = false
+  }
+  Bread.findByIdAndUpdate(req.params.id, req.body, { new: true }) 
+    .then(updatedBread => {
+      console.log(updatedBread) 
+      res.redirect(`/breads/${req.params.id}`) 
+    })
+})
 
 
 // DELETE
-breads.delete('/:indexArray', (req, res) => {
-    Bread.splice(req.params.indexArray, 1)
-    res.status(303).redirect('/breads')
-  })
+breads.delete('/:id', (req, res) => {
+  Bread.findByIdAndDelete(req.params.id) 
+    .then(deletedBread => { 
+      res.status(303).redirect('/breads')
+    })
+})
+
 
 
   module.exports = breads
