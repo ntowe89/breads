@@ -20,6 +20,7 @@ function New () {
             id="image"
             pattern="https?://.+"
             title="Include http://"/>
+            
             <label htmlFor="baker">Baker</label>
               <select name="baker" id="baker">
                 <option value="Rachel">Rachel</option>
