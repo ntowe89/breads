@@ -1,20 +1,12 @@
-// // require mongoose 
-// const mongoose = require('mongoose')
-// // creating shorthand for the Schema constructor 
-// const { Schema } = mongoose 
-
-// const breadSchema = new Schema({
-//   name: { type: String, required: true },
-//   hasGluten: Boolean,
-//   image: { type: String, default: 'http://placehold.it/500x500.png' }
-// })
-
-
-// const Bread = mongoose.model('bread', breadSchema)
-
-// module.exports = Bread
-
+require('dotenv').config()
 const mongoose = require('mongoose')
+
+// const connect = async () => {
+//   await mongoose.connect(process.env.MONGO_URL)
+//   console.log("database connected")
+// }
+
+// connect()
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true, 

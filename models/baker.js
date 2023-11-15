@@ -4,8 +4,6 @@ const { Schema } = mongoose
 const Bread = require('./bread.js')
 
 // schema
-// schema
-// schema
 const bakerSchema = new Schema({
     name: {
         type: String,
